@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>NoName - Главная</title>
+    <title>NoName - Контакты</title>
     <style>
         /* Общие стили */
         * {
@@ -135,6 +135,14 @@
             color: #5DA9FF;
         }
         
+        .highlight-green {
+            color: #4CAF50;
+        }
+        
+        .highlight-purple {
+            color: #BA68C8;
+        }
+        
         .text-output {
             color: #e0e0e0;
             margin-left: 20px;
@@ -147,6 +155,112 @@
         
         .text-output li {
             margin-bottom: 8px;
+        }
+        
+        /* Контактная форма */
+        .contact-form {
+            margin-top: 20px;
+            background-color: #151515;
+            border: 1px solid #333;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            color: #4CAF50;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .form-input, .form-textarea {
+            width: 100%;
+            background-color: #0a0a0a;
+            border: 1px solid #333;
+            color: #f0f0f0;
+            padding: 10px 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            border-radius: 3px;
+            transition: border-color 0.2s;
+        }
+        
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: none;
+        }
+        
+        .form-submit {
+            background-color: transparent;
+            border: 1px solid #4CAF50;
+            color: #4CAF50;
+            padding: 10px 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 100%;
+        }
+        
+        .form-submit:hover {
+            background-color: #4CAF50;
+            color: #0a0a0a;
+        }
+        
+        .form-submit:active {
+            transform: scale(0.98);
+        }
+        
+        /* Контактные данные */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            background-color: #151515;
+            border: 1px solid #333;
+            border-radius: 5px;
+            padding: 15px;
+            transition: all 0.3s;
+        }
+        
+        .contact-item:hover {
+            border-color: #4CAF50;
+            transform: translateY(-2px);
+        }
+        
+        .contact-title {
+            color: #5DA9FF;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        
+        .contact-value {
+            color: #f0f0f0;
+            font-size: 0.95rem;
+            word-break: break-all;
+        }
+        
+        .contact-link {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        
+        .contact-link:hover {
+            text-decoration: underline;
         }
         
         /* Футер */
@@ -239,6 +353,15 @@
             .cursor {
                 height: 1.2rem;
             }
+            
+            .contact-info {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .contact-form {
+                padding: 15px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -271,6 +394,14 @@
             .command-title {
                 margin-bottom: 15px;
             }
+            
+            .contact-form {
+                padding: 15px;
+            }
+            
+            .form-group {
+                margin-bottom: 15px;
+            }
         }
         
         /* Предотвращение скролла */
@@ -292,73 +423,80 @@
     <!-- Основной контент -->
     <main>
         <div class="content-wrapper">
-            <div class="command-title">$ whoami<span class="cursor"></span></div>
+            <div class="command-title">$ contact --info<span class="cursor"></span></div>
             
             <div class="terminal-output">
                 <div class="output-line">
-                    <span class="command">$</span> <span class="highlight">cat about_me.txt</span>
+                    <span class="command">$</span> <span class="highlight">cat contact_info.txt</span>
                 </div>
                 
                 <div class="output-line">
-                    <span class="comment"># Обо мне:</span>
+                    <span class="comment"># Контактная информация:</span>
                 </div>
                 
-                <div class="output-line text-output">
-                    Python-разработчик с 3+ годами опыта в создании веб-приложений и сервисов.
-                </div>
-                
-                <div class="output-line">
-                    <span class="command">></span> <span class="highlight-blue">Ключевые технологии и стэк:</span>
-                </div>
-                
-                <div class="output-line text-output">
-                    <ul>
-                        <li><span class="highlight">Python/Django</span>, FastAPI, Flask</li>
-                        <li><span class="highlight">JavaScript/React</span>, TypeScript</li>
-                        <li><span class="highlight">Docker</span>, Docker Compose</li>
-                        <li><span class="highlight">PostgreSQL</span>, Redis, MongoDB</li>
-                        <li>Git, CI/CD, Linux, Nginx</li>
-                    </ul>
-                </div>
-                
-                <div class="output-line">
-                    <span class="command">></span> <span class="highlight-blue">Типы задач/проектов, которые решаю:</span>
-                </div>
-                
-                <div class="output-line text-output">
-                    <ul>
-                        <li>Бэкенд-разработка и создание RESTful/GraphQL API</li>
-                        <li>Оптимизация производительности и масштабирование приложений</li>
-                        <li>Интеграция сторонних сервисов и платежных систем</li>
-                        <li>Разработка микросервисной архитектуры</li>
-                        <li>Настройка инфраструктуры и деплой приложений</li>
-                    </ul>
-                </div>
-                
-                <div class="output-line">
-                    <span class="command">></span> <span class="highlight-blue">Основные качества:</span>
-                </div>
-                
-                <div class="output-line text-output">
-                    <ul>
-                        <li>Внимательность к деталям и качеству кода</li>
-                        <li>Умение работать в команде и коммуникабельность</li>
-                        <li>Быстрая обучаемость и адаптация к новым технологиям</li>
-                        <li>Ответственность и соблюдение дедлайнов</li>
-                        <li>Системное мышление и аналитические способности</li>
-                    </ul>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-title">Email</div>
+                        <div class="contact-value">
+                            <a href="mailto:noname@example.com" class="contact-link">noname@example.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-title">Телефон</div>
+                        <div class="contact-value">
+                            <a href="tel:+79161234567" class="contact-link">+7 (916) 123-45-67</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-title">GitHub</div>
+                        <div class="contact-value">
+                            <a href="https://github.com/noname-dev" target="_blank" class="contact-link">github.com/noname-dev</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-title">LinkedIn</div>
+                        <div class="contact-value">
+                            <a href="https://linkedin.com/in/noname" target="_blank" class="contact-link">linkedin.com/in/noname</a>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="output-line">
-                    <span class="command">></span> <span class="highlight-blue">Цель/искаю:</span>
-                </div>
-                
-                <div class="output-line text-output">
-                    Ищу интересные проекты в области веб-разработки, где смогу применять и развивать свои навыки, работать в профессиональной команде над сложными и значимыми продуктами.
+                    <span class="command">$</span> <span class="comment"># Время ответа: обычно в течение 24 часов</span>
                 </div>
                 
                 <div class="output-line">
-                    <span class="command">$</span> <span class="comment"># Готов к новым вызовам!</span>
+                    <span class="command">></span> <span class="highlight-blue">Форма для быстрого контакта:</span>
+                </div>
+                
+                <div class="contact-form">
+                    <div class="form-group">
+                        <label class="form-label">Ваше имя:</label>
+                        <input type="text" class="form-input" id="contactName" placeholder="Введите ваше имя">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Email для ответа:</label>
+                        <input type="email" class="form-input" id="contactEmail" placeholder="email@example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Сообщение:</label>
+                        <textarea class="form-textarea" id="contactMessage" placeholder="Опишите ваш проект или задайте вопрос..."></textarea>
+                    </div>
+                    
+                    <button class="form-submit" id="submitContact">Отправить сообщение</button>
+                </div>
+                
+                <div class="output-line">
+                    <span class="command">$</span> <span class="highlight-green">contact --available --hours="9:00-18:00 (МСК)"</span>
+                </div>
+                
+                <div class="output-line">
+                    <span class="text-output">Готов к обсуждению проектов, сотрудничеству и новым возможностям!</span>
                 </div>
             </div>
         </div>
@@ -367,10 +505,10 @@
     <!-- Футер -->
     <footer>
         <div class="nav-buttons">
-            <a href="index.html" class="nav-btn active">[Главная]</a>
+            <a href="index.html" class="nav-btn">[Главная]</a>
             <a href="exp.html" class="nav-btn">[Навыки]</a>
             <a href="product.html" class="nav-btn">[Проекты]</a>
-            <a href="contact.html" class="nav-btn">[Контакт]</a>
+            <a href="contact.html" class="nav-btn active">[Контакт]</a>
             <a href="#" class="nav-btn">[Резюме]</a>
         </div>
     </footer>
@@ -390,6 +528,31 @@
         // Добавляем класс для предотвращения скролла на body
         document.body.classList.add('no-scroll');
         
+        // Обработчик отправки формы
+        document.getElementById('submitContact').addEventListener('click', function() {
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            const message = document.getElementById('contactMessage').value;
+            
+            if (!name || !email || !message) {
+                alert('Пожалуйста, заполните все поля формы.');
+                return;
+            }
+            
+            if (!email.includes('@')) {
+                alert('Пожалуйста, введите корректный email адрес.');
+                return;
+            }
+            
+            // В реальном приложении здесь был бы запрос к серверу
+            alert(`Сообщение отправлено!\n\nИмя: ${name}\nEmail: ${email}\n\nВ реальном приложении это сообщение было бы отправлено на сервер.`);
+            
+            // Очистка формы
+            document.getElementById('contactName').value = '';
+            document.getElementById('contactEmail').value = '';
+            document.getElementById('contactMessage').value = '';
+        });
+        
         // Адаптация под размер экрана
         function adjustLayout() {
             const vh = window.innerHeight * 0.01;
@@ -401,4 +564,4 @@
         adjustLayout();
     </script>
 </body>
-a</html>
+</html>
