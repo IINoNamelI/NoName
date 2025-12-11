@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кнопка-сердце</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            overflow: hidden;
+            flex-direction: column;
+        }
+        .button {
+            padding: 20px 40px;
+            font-size: 24px;
+            border: none;
+            background-color: #ff4757;
+            color: white;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: opacity 1s;
+            z-index: 10;
+        }
+        .heart-container {
+            display: none;
+            position: relative;
+            width: 400px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        svg {
+            position: absolute;
+            cursor: pointer;
+        }
+        path {
+            stroke: #ff4757;
+            stroke-width: 4;
+            fill: none;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw 3s linear forwards;
+        }
+        @keyframes draw {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="button" onclick="showHearts()">Нажми</button>
+    <div class="heart-container" id="heartContainer"></div>
+
+    <script>
+        function createHeart(size, delay) {
+            const container = document.getElementById("heartContainer");
+            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.setAttribute("viewBox", "-50 -50 100 100");
+            svg.setAttribute("width", size);
+            svg.setAttribute("height", size);
+            svg.style.animationDelay = `${delay}s`;
+            
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path.setAttribute("d", "M0,-30 C20,-50 50,-20 0,30 C-50,-20 -20,-50 0,-30");
+            path.style.stroke = "#ff4757";
+            path.style.strokeWidth = "4";
+            path.style.fill = "none";
+            path.style.strokeDasharray = "1000";
+            path.style.strokeDashoffset = "1000";
+            path.style.animation = "draw 3s linear forwards";
+            path.style.animationDelay = `${delay}s`;
+            
+            svg.appendChild(path);
+            container.appendChild(svg);
+        }
+
+        function showHearts() {
+            const button = document.querySelector('.button');
+            const heartContainer = document.getElementById('heartContainer');
+            button.style.opacity = '0';
+            setTimeout(() => {
+                button.style.display = 'none';
+                heartContainer.style.display = 'flex';
+                for (let i = 0; i < 5; i++) {
+                    createHeart(400 - i * 50, i * 1.5);
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
