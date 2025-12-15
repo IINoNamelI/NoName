@@ -25,7 +25,7 @@ img {
    ====================== */
 .head {
     position: fixed;
-    top: 0;
+    top: 0; 
     left: 0;
     right: 0;
 
@@ -244,7 +244,12 @@ img {
     cursor: pointer;
     margin-left: 15px;
     margin-top: 30px;
+    transition: background 0.2s, color 0.2s, transform 0.1s;
     
+}
+
+.social-btn:hover {
+    transform: scale(1.1);
 }
 
 .social-btn img {
@@ -271,9 +276,11 @@ img {
 
 .project img {
     width: 100%;
-    aspect-ratio: 1 / 1;
+    height: auto;
+    
     object-fit: cover;
     border: 1px solid #00e676;
+    
 }
 
 .project-name {
@@ -281,6 +288,29 @@ img {
     font-size: 20px;
     color: yellow;
 }
+
+/* ==================НАЗВНИЕ И ИХ КОДИРОВКА================== */
+.project-name2 {/* ================== ЗАВЕРШЕННЫЙ  */
+    margin-top: 4px;
+    color: #ffffff;
+}
+.project-name3 {/* ================== ДОРАБОТКА  */
+    margin-top: 4px;
+    color: rgb(0, 255, 0);
+}
+.project-name4 {/* ================== НЕ ЗАКОНЧЕНЫЙ И В ОЖИДАНИИ  */
+    margin-top: 4px;
+    color: rgb(0, 255, 0);
+}
+.project-name5 {/* ================== ПЛАНИРУЕТСЯ  */
+    margin-top: 4px;
+    color: rgb(0, 255, 0);
+}
+.project-name666 {/* ================== ТЕСТОВЫЙ  */
+    margin-top: 4px;
+    color: rgb(0, 255, 0);
+}
+
 
 .project-link {
     margin-top: 4px;
@@ -292,4 +322,11 @@ img {
     font-family: 'Press Start 2P', cursive;
     cursor: pointer;
     font-size: 18px;
+    transition: background 0.2s, color 0.2s, transform 0.1s;
+}
+
+.project-link:hover {
+    background-color: #00e676;
+    color: black;
+    
 }
