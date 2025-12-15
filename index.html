@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoName | Главная</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="image/favicon.png">
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <!-- Шапка -->
+<div class="head">
+    <div class="name">NoName</div>
+
+    <div class="head-buttons"> 
+        <button class="btn" data-window="window1">Главная</button>
+        <button class="btn" data-window="window2">Навыки</button>
+        <button class="btn" data-window="window4">Проекты</button>
+        <button class="btn" data-window="window3">Контакты</button>
+    </div>
+</div>
+
+<!-- Контент -->
+<div class="content">
+    <!-- Главное окно: Консоль -->
+<div class="window" id="window1">
+    <div class="window-header">
+        <span class="window-title">Главное окно</span>
+        <div class="window-buttons">
+            <button class="minimize">—</button>
+        </div>
+    </div>
+    <div class="window-content main">
+        <h1 class="w1h1">Кто я</h1>
+        <p class="w1p1">Меня в интернете знают под ником <span class="NoName">NoName</span> — это мой псевдоним в играх и проектах.</p>
+        <p class="w1p1">В настоящее время я учусь в Пензенском государственном университете в колледже по специальности <span class="NoName">"Информационные технологии и программирование"</span>.</p>
+        <p class="w1p1">Среди моих уникальных качеств — адаптивность к изменениям, стремление к работе и бесконечный интерес к кодингу и изучению новых языков программирования.</p>
+        <h1 class="w1h1">Чем занимаюсь</h1>
+        <p class="w1p1">Сейчас я совмещаю учёбу и работу, не забывая о хобби и саморазвитии в программировании.</p>
+        <p class="w1p1">Говоря на счет хоби это кодинг, это создангние и изучение новых интересных решений в создании программ, сайтов, скриптов, и многого другого</p>
+        <p class="w1p1">Особенно мне запомнились мои проекты, такие как этот сайт визитка и телеграм-бот, над которыми я работал с большим удовольствием.</p>
+        <h1 class="w1h1">Что умею</h1>
+        <p class="w1p1">На данный момент я хорошо владею языками <span class="NoName">HTML</span>, <span class="NoName">CSS</span> и в меньшей степени <span class="NoName">JavaScript</span>, знаком с <span class="NoName">Python</span>, а также имею базовые знания <span class="NoName">C++</span> и <span class="NoName">C#</span>.</p>
+        <p class="w1p1">Сейчас активно осваиваю  <span class="NoName">PHP</span>,  <span class="NoName">C++</span>/<span class="NoName">C#</span>,  <span class="NoName">SQL</span> и  <span class="NoName">React</span>.</p>
+        <p class="w1p1">Кроме того, я стал лучше разбираться в <span class="NoName">Python</span> и <span class="NoName">JavaScript</span>, что позволяет создавать более сложные и интересные проекты.</p>
+    </div>
+    <div class="window-resize-handle"></div>
+</div>
+
+<!-- Навыки -->
+<div class="window" id="window2">
+    <div class="window-header">
+        <span class="window-title">Навыки</span>
+        <div class="window-buttons">
+            <button class="minimize">—</button>
+        </div>
+    </div>
+    <div class="window-content skills">
+        <div class="skill"><div class="skill-title">HTML</div><div class="skill-bar"><div class="skill-progress" style="width:70%"></div></div></div>
+        <div class="skill"><div class="skill-title">CSS</div><div class="skill-bar"><div class="skill-progress" style="width:80%"></div></div></div>
+        <div class="skill"><div class="skill-title">JS</div><div class="skill-bar"><div class="skill-progress" style="width:30%"></div></div></div>
+        <div class="skill"><div class="skill-title">React</div><div class="skill-bar"><div class="skill-progress" style="width:10%"></div></div></div>
+        <div class="skill"><div class="skill-title">Python</div><div class="skill-bar"><div class="skill-progress" style="width:70%"></div></div></div>
+        <div class="skill"><div class="skill-title">C++</div><div class="skill-bar"><div class="skill-progress" style="width:40%"></div></div></div>
+    </div>
+    <div class="window-resize-handle"></div>
+</div>
+
+<!-- Контакты -->
+<div class="window" id="window3">
+    <div class="window-header">
+        <span class="window-title">Контакты</span>
+        <div class="window-buttons">
+            <button class="minimize">—</button>
+        </div>
+    </div>
+    <div class="window-content contacts">
+        <button class="social-btn" onclick="window.location.href='err.html'">
+            <img src="image/g1.png" alt="GitHub">
+        </button>
+        <button class="social-btn" onclick="window.location.href='err.html'">
+            <img src="image/d1.png" alt="Discord">
+        </button>
+        <button class="social-btn" onclick="window.location.href='err.html'">
+            <img src="image/t2.png" alt="Telegram">
+        </button>
+        <button class="social-btn" onclick="window.location.href='err.html'">
+            <img src="image/t1.png" alt="Twitch">
+        </button>
+        <button class="social-btn" onclick="window.location.href='err.html'">
+            <img src="image/v1.png" alt="VK">
+        </button>
+    </div>
+    <div class="window-resize-handle"></div>
+</div>
+
+<!-- Проекты -->
+<div class="window" id="window4">
+    <div class="window-header">
+        <span class="window-title">Проекты</span>
+        <div class="window-buttons">
+            <button class="minimize">—</button>
+        </div>
+    </div>
+    <div class="window-content projects">
+        <!--  ---------------------------------------- Проект номер 1 ------------------------------------------------------ -->
+        <div class="project">
+            <img src="image/pro1.png" alt="Телеграмм бот">
+            <div class="project-name">Live редактор</div>
+            <div class="project-name2">Ожидает доработки</div>
+            <button class="project-link" onclick="window.location.href = 'content project/live_edit.html'">Перейти</button>
+        </div>
+        <!--  ---------------------------------------- Проект номер 1 закончен ------------------------------------------------------ -->
+    </div>
+    <div class="window-resize-handle"></div>
+</div>
+</div>
+</body>
+<script src="assets/script.js"></script>
+</html>
