@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Code Editor</title>
+
+    <!-- CodeMirror -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/material-darker.min.css">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1e1e1e;
+            color: #f0f0f0;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* РЕДАКТОР СТАЛ УЖЕ */
+        .editor-panel {
+            width: 35%;
+            display: flex;
+            flex-direction: column;
+            background-color: #2d2d2d;
+            border-right: 1px solid #444;
+        }
+
+        .editor-tabs {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #252526;
+            border-bottom: 1px solid #444;
+        }
+
+        .back-btn {
+            margin-left: 10px;
+            padding: 6px 12px;
+            background: #1e1e1e;
+            color: #fff;
+            border: 1px solid #444;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .tabs-right {
+            display: flex;
+        }
+
+        .editor-tab {
+            padding: 10px 15px;
+            cursor: pointer;
+            border-left: 1px solid #444;
+        }
+
+        .editor-tab.active {
+            background-color: #1e1e1e;
+        }
+
+        .editor-content {
+            flex: 1;
+        }
+
+        .editor-tab-content {
+            display: none;
+            height: 100%;
+        }
+
+        .editor-tab-content.active {
+            display: block;
+        }
+
+        .CodeMirror {
+            height: 100%;
+            font-size: 14px;
+        }
+
+        .preview-panel {
+            width: 65%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        iframe {
+            flex: 1;
+            border: none;
+            background: white;
+        }
+
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .editor-panel, .preview-panel { width: 100%; height: 50%; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="editor-panel">
+        <div class="editor-tabs">
+            <button class="back-btn" onclick="history.back()">← Назад</button>
+            <div class="tabs-right">
+                <div class="editor-tab active" data-tab="html">HTML</div>
+                <div class="editor-tab" data-tab="css">CSS</div>
+                <div class="editor-tab" data-tab="js">JS</div>
+            </div>
+        </div>
+
+        <div class="editor-content">
+            <div class="editor-tab-content active" id="html-tab"></div>
+            <div class="editor-tab-content" id="css-tab"></div>
+            <div class="editor-tab-content" id="js-tab"></div>
+        </div>
+    </div>
+
+    <div class="preview-panel">
+        <iframe id="preview"></iframe>
+    </div>
+</div>
+
+<!-- CodeMirror scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/hint/show-hint.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/hint/show-hint.min.css">
+
+<script>
+    const preview = document.getElementById('preview');
+
+    const htmlEditor = CodeMirror(document.getElementById('html-tab'), {
+        mode: 'xml',
+        theme: 'material-darker',
+        lineNumbers: true,
+        autoCloseBrackets: true,
+        matchBrackets: true,
+        extraKeys: { 'Ctrl-Space': 'autocomplete' }
+    });
+
+    const cssEditor = CodeMirror(document.getElementById('css-tab'), {
+        mode: 'css',
+        theme: 'material-darker',
+        lineNumbers: true,
+        autoCloseBrackets: true
+    });
+
+    const jsEditor = CodeMirror(document.getElementById('js-tab'), {
+        mode: 'javascript',
+        theme: 'material-darker',
+        lineNumbers: true,
+        autoCloseBrackets: true
+    });
+
+    function updatePreview() {
+        const doc = preview.contentDocument;
+        doc.open();
+        doc.write(`
+            ${htmlEditor.getValue()}
+            <style>${cssEditor.getValue()}</style>
+            <script>${jsEditor.getValue()}<\/script>
+        `);
+        doc.close();
+    }
+
+    [htmlEditor, cssEditor, jsEditor].forEach(ed => ed.on('change', updatePreview));
+
+    document.querySelectorAll('.editor-tab').forEach(tab => {
+        tab.onclick = () => {
+            document.querySelectorAll('.editor-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.editor-tab-content').forEach(c => c.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById(tab.dataset.tab + '-tab').classList.add('active');
+        };
+    });
+
+    updatePreview();
+</script>
+</body>
+</html>
