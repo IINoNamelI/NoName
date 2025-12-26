@@ -237,6 +237,7 @@ document.getElementById('close-menu').onclick = () => {
 };
 
 document.getElementById('download-cv').onclick = () => {
-    window.location.href = 'files/resume test.docxz`';
+    window.location.href = 'err.html';
 };
+
 
