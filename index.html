@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>n0n4m1_x</title>
+<meta name="description" content="n0n4m1_x — personal card. Code, design & everything in between.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%230a0a0b'/%3E%3Ctext%20x='32'%20y='43'%20font-family='monospace'%20font-size='30'%20fill='%23b6ff3b'%20text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0b;
+    --fg: #f2f2ef;
+    --dim: #8a8a85;
+    --faint: #62625e;
+    --accent: #b6ff3b;
+    --line: rgba(255, 255, 255, .12);
+    --mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body { height: 100%; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    overflow: hidden;
+    overscroll-behavior: none;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  /* ---- background: grid + aurora glows ---- */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 72px 72px;
+    opacity: .35;
+    -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 42%, #000 25%, transparent 78%);
+    mask-image: radial-gradient(ellipse 85% 75% at 50% 42%, #000 25%, transparent 78%);
+    pointer-events: none;
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(42vmax 32vmax at 18% 0%, rgba(182, 255, 59, .07), transparent 65%),
+      radial-gradient(46vmax 36vmax at 88% 100%, rgba(122, 92, 255, .09), transparent 65%);
+    pointer-events: none;
+  }
+
+  .glow {
+    position: fixed;
+    top: 0; left: 0;
+    width: 520px; height: 520px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(182, 255, 59, .06), transparent 62%);
+    pointer-events: none;
+    transition: transform .3s ease-out;
+    will-change: transform;
+    z-index: 0;
+  }
+
+  /* ---- layout: exactly one screen ---- */
+  .page {
+    position: relative;
+    z-index: 1;
+    height: 100vh;
+    height: 100svh;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: clamp(20px, 4vmin, 44px) clamp(20px, 5vmin, 56px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: clamp(12px, 2vmin, 24px);
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    min-width: 0;
+  }
+
+  .mono { font-family: var(--mono); }
+  .dim { color: var(--faint); font-size: 12px; letter-spacing: .02em; }
+
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--dim);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 14px;
+    white-space: nowrap;
+  }
+
+  .status i {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 0 rgba(182, 255, 59, .5);
+    animation: pulse 2.4s ease-out infinite;
+  }
+
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(182, 255, 59, .45); }
+    70%  { box-shadow: 0 0 0 9px rgba(182, 255, 59, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(182, 255, 59, 0); }
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: clamp(14px, 2.6vmin, 26px);
+    min-width: 0;
+  }
+
+  .label {
+    color: var(--dim);
+    font-size: clamp(11px, 1.7vmin, 14px);
+    letter-spacing: .14em;
+    text-transform: lowercase;
+  }
+
+  h1 {
+    font-size: clamp(40px, 11vmin, 124px);
+    font-weight: 600;
+    letter-spacing: -.045em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  h1 .x { color: var(--accent); }
+
+  .caret {
+    display: inline-block;
+    width: .1em;
+    height: .8em;
+    margin-left: .08em;
+    background: var(--accent);
+    vertical-align: baseline;
+    transform: translateY(.08em);
+    animation: blink 1.15s steps(2, start) infinite;
+  }
+
+  @keyframes blink { to { visibility: hidden; } }
+
+  .tagline {
+    color: var(--dim);
+    font-size: clamp(14px, 2.1vmin, 18px);
+    line-height: 1.6;
+    max-width: 46ch;
+    text-wrap: balance;
+  }
+
+  .links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: clamp(8px, 1.4vmin, 14px);
+    margin-top: clamp(4px, 1vmin, 10px);
+  }
+
+  .links a {
+    font-family: var(--mono);
+    font-size: clamp(12px, 1.8vmin, 14px);
+    color: var(--fg);
+    text-decoration: none;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: clamp(9px, 1.6vmin, 13px) clamp(18px, 2.6vmin, 26px);
+    transition: border-color .25s, color .25s, background .25s, transform .25s;
+  }
+
+  .links a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(182, 255, 59, .07);
+    transform: translateY(-2px);
+  }
+
+  footer span { white-space: nowrap; }
+
+  /* ---- entrance ---- */
+  .rise { opacity: 0; animation: rise .7s cubic-bezier(.2, .7, .2, 1) var(--d, 0s) forwards; }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  @media (max-height: 480px) {
+    .page { padding-block: 14px; }
+    main { gap: 10px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rise { animation: none; opacity: 1; }
+    .caret, .status i { animation: none; }
+    .links a, .glow { transition: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="glow" id="glow"></div>
+
+  <div class="page">
+    <header class="row rise" style="--d:.05s">
+      <span class="mono dim">~/n0n4m1_x</span>
+      <span class="status"><i></i>open to collab</span>
+    </header>
+
+    <main>
+      <p class="mono label rise" style="--d:.15s">// digital identity</p>
+      <h1 class="rise" style="--d:.25s">n0n4m1_<span class="x">x</span><span class="caret" aria-hidden="true"></span></h1>
+      <p class="tagline rise" style="--d:.35s">Building quiet things for the loud web — code, design &amp; everything in between.</p>
+      <nav class="links rise" style="--d:.45s" aria-label="social links">
+        <a href="https://github.com/IINoNamelI" target="_blank" rel="noopener">github</a>
+        <a href="_blank" target="_blank" rel="noopener">telegram</a>
+        <a href="_blank">mail</a>
+      </nav>
+    </main>
+
+    <footer class="row mono dim rise" style="--d:.55s">
+      <span>© 2026 n0n4m1_x</span>
+      
+    </footer>
+  </div>
+
+<script>
+  const glow = document.getElementById('glow');
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (finePointer && !reducedMotion) {
+    let raf;
+    window.addEventListener('pointermove', (e) => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        glow.style.transform = `translate(${e.clientX - 260}px, ${e.clientY - 260}px)`;
+      });
+    });
+  } else {
+    glow.remove();
+  }
+</script>
+</body>
+</html>
